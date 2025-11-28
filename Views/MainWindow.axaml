@@ -113,10 +113,13 @@
 					<StackPanel>
 						<TextBlock Text="说明" Classes="card-header" />
 						<TextBlock TextWrapping="Wrap" Foreground="#666">
-							• AES/SM4: 对称加密算法，需要密钥和IV。{LineBreak}
-							• SHA256/SHA512/SM3: 哈希算法，不可逆。{LineBreak}
-							• 密钥和IV留空时将自动生成（SM4 有默认值）。{LineBreak}
-							• 支持 Windows、macOS、Linux 平台。
+							<Run Text="使用说明:" FontWeight="Bold" />
+							<LineBreak />
+							<Run Text="• AES/SM4: 对称加密算法，需要密钥和IV" />
+							<LineBreak />
+							<Run Text="• SHA256/SHA512/SM3: 哈希算法，不可逆，不需要密钥" />
+							<LineBreak />
+							<Run Text="• 支持Windows、macOS、Linux平台" />
 						</TextBlock>
 					</StackPanel>
 				</Border>

@@ -1,18 +1,35 @@
 ﻿<!-- CrossPlatformCryptoTool.sln -->
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<OutputType>WinExe</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
+		<OutputType>Exe</OutputType>
+		<TargetFrameworks>net8.0;net8.0-macos12.0</TargetFrameworks>
 		<Nullable>enable</Nullable>
 		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-	</PropertyGroup>
 
+		<CFBundleName>CrossPlatformCryptoTool</CFBundleName>
+		<CFBundleDisplayName>CrossPlatformCryptoTool</CFBundleDisplayName>
+		<CFBundleIdentifier>com.CrossPlatformCryptoTool.macos</CFBundleIdentifier>
+		<CFBundleVersion>1.0.0</CFBundleVersion>
+		<CFBundlePackageType>AAPL</CFBundlePackageType>
+		<CFBundleSignature>????</CFBundleSignature>
+		<CFBundleExecutable>CrossPlatformCryptoTool</CFBundleExecutable>
+		<CFBundleIconFile>Assets/aoify-4ql40.icns</CFBundleIconFile>
+		<CFBundleShortVersionString>1.0</CFBundleShortVersionString>
+		<NSPrincipalClass>NSApplication</NSPrincipalClass>
+		<NSHighResolutionCapable>true</NSHighResolutionCapable>
+	</PropertyGroup>
+	<!-- 添加以下条件属性组来在Release模式下禁用调试符号 -->
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
 	<ItemGroup>
 		<Folder Include="Models\" />
 		<Folder Include="Views\" />
 		<Folder Include="ViewModels\" />
+		<None Include="Assets\aoify-4ql40.icns" CopyToPublishDirectory="PreserveNewest" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -28,5 +45,8 @@
 		<PackageReference Include="ReactiveUI" Version="22.2.1" />
 		<PackageReference Include="Semi.Avalonia" Version="11.3.7.1" />
 		<!-- 国密算法支持 -->
+		<PackageReference Include="Dotnet.Bundle" Version="0.9.13" />
 	</ItemGroup>
+	<!-- 关键：引入自定义 BundleApp 任务文件 -->
+	<Import Project="osxarm.targets" Condition="'$(RuntimeIdentifier)' == 'osx-arm64'" />
 </Project>
