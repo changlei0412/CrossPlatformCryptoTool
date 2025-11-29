@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFrameworks>net8.0;net8.0-macos12.0</TargetFrameworks>
+		<TargetFrameworks>net8.0;net8.0-macos14.0</TargetFrameworks>
 		<Nullable>enable</Nullable>
 		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
@@ -48,5 +48,5 @@
 		<PackageReference Include="Dotnet.Bundle" Version="0.9.13" />
 	</ItemGroup>
 	<!-- 关键：引入自定义 BundleApp 任务文件 -->
-	<Import Project="osxarm.targets" Condition="'$(RuntimeIdentifier)' == 'osx-arm64'" />
+	<Import Project="Build\osxarm.targets" Condition="'$(RuntimeIdentifier)' == 'osx-arm64'" />
 </Project>
